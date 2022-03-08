@@ -36,21 +36,21 @@ function Add(props) {
             <form onSubmit={handleSubmit}>
                 <table>
                     <tbody>
-                        <tr>
+                        <tr className="bp3-form-group bp3-inline">
                             <td>Name:</td>
-                            <td><input type="text" name="name" value={name} onChange={handleNameChange} /></td>    
+                            <td><input className="bp3-input" type="text" name="name" value={name} onChange={handleNameChange} /></td>    
                         </tr>
-                        <tr>
+                        <tr className="bp3-form-group bp3-inline">
                             <td>City:</td>
-                            <td><input type="text" name="city" value={city} onChange={handleCityChange} /></td>    
+                            <td><input className="bp3-input" type="text" name="city" value={city} onChange={handleCityChange} /></td>    
                         </tr>
-                        <tr>
+                        <tr className="bp3-form-group bp3-inline">
                             <td>Year:</td>
-                            <td><input type="text" name="year" value={year} onChange={handleYearChange} /></td>    
+                            <td><input className="bp3-input" type="text" name="year" value={year} onChange={handleYearChange} /></td>    
                         </tr>  
                     </tbody>
                 </table>
-                <button type="submit">Add</button>  
+                <button className="bp3-button bp3-icon-floppy-disk" type="submit" style={{marginBottom: '12px'}}>Add</button>  
             </form>
             <Link to="/">Back to home</Link>
         </>

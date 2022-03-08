@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from "@blueprintjs/core";
+import { Cell, Column, Table } from "@blueprintjs/table";
 
 class Home extends Component {
     constructor() {
@@ -27,33 +29,42 @@ class Home extends Component {
             });
     }
 
+    createDataTable() {
+
+    }
+
     render() {
+        const nameCellRenderer = (rowIndex) => (
+            <Cell>{this.state.teams[rowIndex].name}</Cell>
+        );
+
+        const cityCellRenderer = (rowIndex) => (
+            <Cell>{this.state.teams[rowIndex].city}</Cell>
+        );
+
+        const yearCellRenderer = (rowIndex) => (
+            <Cell>{this.state.teams[rowIndex].year}</Cell>
+        );
+
+        const updateCellRenderer = (rowIndex) => (
+            <Cell><Link to={'/update/' + this.state.teams[rowIndex]._id}>Update</Link></Cell>
+        );
+
+        const deleteCellRenderer = (rowIndex) => (
+            <Cell><a onClick={this.handleDelete} data-id={this.state.teams[rowIndex]._id}>Delete</a></Cell>
+        );
+
         return(
             <>
                 <h3>Soccer Teams</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>City</th>
-                            <th>Year</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.teams.map(team => (
-                            <tr key={team._id}>
-                                <td>{team.name}</td>
-                                <td>{team.city}</td>
-                                <td>{team.year}</td>
-                                <td><Link to={'/update/' + team._id}>Update</Link></td>
-                                <td><button type="button" onClick={this.handleDelete} data-id={team._id}>Delete</button></td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                <Link to="/add">Add new team</Link>
+                <Table numRows={this.state.teams.length}>
+                    <Column name="Club Name" cellRenderer={nameCellRenderer}/>
+                    <Column name="City" cellRenderer={cityCellRenderer} />
+                    <Column name="Year Founded" cellRenderer={yearCellRenderer} />
+                    <Column name="" cellRenderer={updateCellRenderer} />
+                    <Column name="" cellRenderer={deleteCellRenderer} />
+                </Table>
+                <Link className="bp3-button bp3-icon-add" to="/add" style={{marginTop: '12px'}}>Add new team</Link>
             </>
         );
     }
