@@ -29,10 +29,6 @@ class Home extends Component {
             });
     }
 
-    createDataTable() {
-
-    }
-
     render() {
         const nameCellRenderer = (rowIndex) => (
             <Cell>{this.state.teams[rowIndex].name}</Cell>
